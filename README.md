@@ -1,0 +1,1 @@
+Fazer um EF de acordo com o Encarte.jpg
