@@ -8,3 +8,4 @@ C:\Users\33989106880\backend\CursosLivre\obj\Debug\netcoreapp2.0\CursosLivre.Ass
 C:\Users\33989106880\backend\CursosLivre\obj\Debug\netcoreapp2.0\CursosLivre.AssemblyInfo.cs
 C:\Users\33989106880\backend\CursosLivre\obj\Debug\netcoreapp2.0\CursosLivre.dll
 C:\Users\33989106880\backend\CursosLivre\obj\Debug\netcoreapp2.0\CursosLivre.pdb
+C:\Users\33989106880\backend\CursosLivre\bin\Debug\netcoreapp2.0\CursosLivre.xml
