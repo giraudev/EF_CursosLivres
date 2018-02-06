@@ -18,18 +18,31 @@ namespace CursosLivre.Controllers
             this.contexto = contexto;
         }
 
+        /// <summary>
+        /// Retorna lista de Cronogramas
+        /// </summary>
+        /// <returns>Cronogramas</returns>
         [HttpGet]
         public IEnumerable<Cronogramas> Listar()
         {
             return contexto.Cronogramas.ToList();
         }
 
+        /// <summary>
+        /// Retorna um Cronograma, pelo parametro id
+        /// </summary>
+        /// <param name="id">id de cronograma</param>
+        /// <returns>cronograma</returns>
         [HttpGet("{id}")]
         public Cronogramas Listar(int id)
         {
             return contexto.Cronogramas.Where(x => x.IdCronograma == id).FirstOrDefault();
         }
 
+        /// <summary>
+        /// Cadastra um cronograma novo
+        /// </summary>
+        /// <param name="cronograma">cronograma</param>
         [HttpPost]
         public void Cadastrar([FromBody] Cronogramas cronograma)
         {
@@ -37,6 +50,12 @@ namespace CursosLivre.Controllers
             contexto.SaveChanges();
         }
 
+        /// <summary>
+        /// Atualiza um cronograma existente
+        /// </summary>
+        /// <param name="id">id cronograma</param>
+        /// <param name="cronograma">cronograma</param>
+        /// <returns></returns>
         [HttpPut("{id}")]
         public IActionResult Atualizar(int id, [FromBody] Cronogramas cronograma)
         {
@@ -65,6 +84,12 @@ namespace CursosLivre.Controllers
             else
                 return BadRequest();
         }
+
+        /// <summary>
+        /// Deleta um cronograma atraves de deu id
+        /// </summary>
+        /// <param name="id">id cronograma</param>
+        /// <returns>msg json</returns>
         [HttpDelete("{id}")]
         public IActionResult Apagar(int id)
         {

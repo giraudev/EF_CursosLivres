@@ -4,5 +4,146 @@
         <name>CursosLivre</name>
     </assembly>
     <members>
+        <member name="T:CursosLivre.Controllers.AreasController">
+            <summary>
+            Classe controller de Area
+            </summary>
+        </member>
+        <member name="M:CursosLivre.Controllers.AreasController.Listar">
+            <summary>
+            Retorna lista de Areas
+            </summary>
+            <returns>Lista de Areas</returns>
+        </member>
+        <member name="M:CursosLivre.Controllers.AreasController.Listar(System.Int32)">
+            <summary>
+            Retorna uma Area, pelo parametro "id"
+            </summary>
+            <param name="id">parametro id</param>
+            <returns>Area</returns>
+        </member>
+        <member name="M:CursosLivre.Controllers.AreasController.Cadastrar(CursosLivre.Models.Areas)">
+            <summary>
+            Cadastra Area
+            </summary>
+            <param name="area">Parametro area</param>
+        </member>
+        <member name="M:CursosLivre.Controllers.AreasController.Atualizar(System.Int32,CursosLivre.Models.Areas)">
+            <summary>
+            Atualiza a Area pelo parametro id
+            </summary>
+            <param name="id">parametro id da Area</param>
+            <param name="area">Area</param>
+            <returns></returns>
+        </member>
+        <member name="M:CursosLivre.Controllers.AreasController.Apagar(System.Int32)">
+            <summary>
+            Deleta Area pelo parametro id
+            </summary>
+            <param name="id">id da Area</param>
+            <returns>retorna json com msg</returns>
+        </member>
+        <member name="M:CursosLivre.Controllers.CronogramasController.Listar">
+            <summary>
+            Retorna lista de Cronogramas
+            </summary>
+            <returns>Cronogramas</returns>
+        </member>
+        <member name="M:CursosLivre.Controllers.CronogramasController.Listar(System.Int32)">
+            <summary>
+            Retorna um Cronograma, pelo parametro id
+            </summary>
+            <param name="id">id de cronograma</param>
+            <returns>cronograma</returns>
+        </member>
+        <member name="M:CursosLivre.Controllers.CronogramasController.Cadastrar(CursosLivre.Models.Cronogramas)">
+            <summary>
+            Cadastra um cronograma novo
+            </summary>
+            <param name="cronograma">cronograma</param>
+        </member>
+        <member name="M:CursosLivre.Controllers.CronogramasController.Atualizar(System.Int32,CursosLivre.Models.Cronogramas)">
+            <summary>
+            Atualiza um cronograma existente
+            </summary>
+            <param name="id">id cronograma</param>
+            <param name="cronograma">cronograma</param>
+            <returns></returns>
+        </member>
+        <member name="M:CursosLivre.Controllers.CronogramasController.Apagar(System.Int32)">
+            <summary>
+            Deleta um cronograma atraves de deu id
+            </summary>
+            <param name="id">id cronograma</param>
+            <returns>msg json</returns>
+        </member>
+        <member name="M:CursosLivre.Controllers.CursosController.Listar">
+            <summary>
+            Retorna lista de cursos
+            </summary>
+            <returns>lista de cursos</returns>
+        </member>
+        <member name="M:CursosLivre.Controllers.CursosController.Listar(System.Int32)">
+            <summary>
+            Retorna curso atraves de seu id
+            </summary>
+            <param name="id">id curso</param>
+            <returns>curso</returns>
+        </member>
+        <member name="M:CursosLivre.Controllers.CursosController.Cadastrar(CursosLivre.Models.Cursos)">
+            <summary>
+            Cadastra novo curso
+            </summary>
+            <param name="curso">curso</param>
+        </member>
+        <member name="M:CursosLivre.Controllers.CursosController.Atualizar(System.Int32,CursosLivre.Models.Cursos)">
+            <summary>
+            Atualiza curso atraves de deu id
+            </summary>
+            <param name="id">id curso</param>
+            <param name="curso">curso</param>
+            <returns></returns>
+        </member>
+        <member name="M:CursosLivre.Controllers.CursosController.Apagar(System.Int32)">
+            <summary>
+            Deleta curso atraves de seu id
+            </summary>
+            <param name="id">id curso</param>
+            <returns>msg json</returns>
+        </member>
+        <member name="M:CursosLivre.Controllers.DiasController.Listar">
+            <summary>
+            Retorna lista de dias
+            </summary>
+            <returns>lista de dias</returns>
+        </member>
+        <member name="M:CursosLivre.Controllers.DiasController.Listar(System.Int32)">
+            <summary>
+            Retorna dia, atraves de seu id
+            </summary>
+            <param name="id">id dias</param>
+            <returns>dia</returns>
+        </member>
+        <member name="M:CursosLivre.Controllers.DiasController.Cadastrar(CursosLivre.Models.Dias)">
+            <summary>
+            Cadastra novo dia
+            </summary>
+            <param name="dia">dia</param>
+        </member>
+        <member name="M:CursosLivre.Controllers.DiasController.Atualizar(System.Int32,CursosLivre.Models.Dias)">
+            <summary>
+            Atualiza dia, atraves de seu id
+            </summary>
+            <param name="id">id dia</param>
+            <param name="dia">dia</param>
+            <returns></returns>
+        </member>
+        <member name="M:CursosLivre.Controllers.DiasController.Apagar(System.Int32)">
+            <summary>
+            Deleta dia atraves de seu id
+            </summary>
+            <param name="id">id dias</param>
+            <returns>msg json</returns>
+        </member>
     </members>
 </doc>

@@ -18,18 +18,31 @@ namespace CursosLivre.Controllers
             this.contexto = contexto;
         }
 
+        /// <summary>
+        /// Retorna lista de dias
+        /// </summary>
+        /// <returns>lista de dias</returns>
         [HttpGet]
         public IEnumerable<Dias> Listar()
         {
             return contexto.Dias.ToList();
         }
 
+        /// <summary>
+        /// Retorna dia, atraves de seu id
+        /// </summary>
+        /// <param name="id">id dias</param>
+        /// <returns>dia</returns>
         [HttpGet("{id}")]
         public Dias Listar(int id)
         {
             return contexto.Dias.Where(x => x.IdDias == id).FirstOrDefault();
         }
 
+        /// <summary>
+        /// Cadastra novo dia
+        /// </summary>
+        /// <param name="dia">dia</param>
         [HttpPost]
         public void Cadastrar([FromBody] Dias dia)
         {
@@ -37,6 +50,12 @@ namespace CursosLivre.Controllers
             contexto.SaveChanges();
         }
 
+        /// <summary>
+        /// Atualiza dia, atraves de seu id
+        /// </summary>
+        /// <param name="id">id dia</param>
+        /// <param name="dia">dia</param>
+        /// <returns></returns>
         [HttpPut("{id}")]
         public IActionResult Atualizar(int id, [FromBody] Dias dia)
         {
@@ -61,6 +80,12 @@ namespace CursosLivre.Controllers
             else
                 return BadRequest();
         }
+
+        /// <summary>
+        /// Deleta dia atraves de seu id
+        /// </summary>
+        /// <param name="id">id dias</param>
+        /// <returns>msg json</returns>
         [HttpDelete("{id}")]
         public IActionResult Apagar(int id)
         {

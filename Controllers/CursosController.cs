@@ -19,18 +19,31 @@ namespace CursosLivre.Controllers
             this.contexto = contexto;
         }
 
+        /// <summary>
+        /// Retorna lista de cursos
+        /// </summary>
+        /// <returns>lista de cursos</returns>
         [HttpGet]
         public IEnumerable<Cursos> Listar()
         {
             return contexto.Cursos.ToList();
         }
 
+        /// <summary>
+        /// Retorna curso atraves de seu id
+        /// </summary>
+        /// <param name="id">id curso</param>
+        /// <returns>curso</returns>
         [HttpGet("{id}")]
         public Cursos Listar(int id)
         {
             return contexto.Cursos.Where(x => x.IdCursos == id).FirstOrDefault();
         }
 
+        /// <summary>
+        /// Cadastra novo curso
+        /// </summary>
+        /// <param name="curso">curso</param>
         [HttpPost]
         public void Cadastrar([FromBody] Cursos curso)
         {
@@ -38,6 +51,12 @@ namespace CursosLivre.Controllers
             contexto.SaveChanges();
         }
 
+        /// <summary>
+        /// Atualiza curso atraves de deu id
+        /// </summary>
+        /// <param name="id">id curso</param>
+        /// <param name="curso">curso</param>
+        /// <returns></returns>
         [HttpPut("{id}")]
         public IActionResult Atualizar(int id, [FromBody] Cursos curso)
         {
@@ -64,6 +83,11 @@ namespace CursosLivre.Controllers
                 return BadRequest();
         }
 
+        /// <summary>
+        /// Deleta curso atraves de seu id
+        /// </summary>
+        /// <param name="id">id curso</param>
+        /// <returns>msg json</returns>
         [HttpDelete("{id}")]
         public IActionResult Apagar(int id)
         {

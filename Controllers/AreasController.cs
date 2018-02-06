@@ -6,30 +6,47 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace CursosLivre.Controllers
 {
+    /// <summary>
+    /// Classe controller de Area
+    /// </summary>
     [Route("api/[controller]")]
 
-        public class AreasController : Controller
+    public class AreasController : Controller
     {
         Areas areas = new Areas();
         readonly CursosLivreContexto contexto;
+
 
         public AreasController(CursosLivreContexto contexto)
         {
             this.contexto = contexto;
         }
 
+        /// <summary>
+        /// Retorna lista de Areas
+        /// </summary>
+        /// <returns>Lista de Areas</returns>
         [HttpGet]
         public IEnumerable<Areas> Listar()
         {
             return contexto.Areas.ToList();
         }
 
+        /// <summary>
+        /// Retorna uma Area, pelo parametro "id"
+        /// </summary>
+        /// <param name="id">parametro id</param>
+        /// <returns>Area</returns>
         [HttpGet("{id}")]
         public Areas Listar(int id)
         {
             return contexto.Areas.Where(x => x.IdArea == id).FirstOrDefault();
         }
 
+        /// <summary>
+        /// Cadastra Area
+        /// </summary>
+        /// <param name="area">Parametro area</param>
         [HttpPost]
         public void Cadastrar([FromBody] Areas area)
         {
@@ -37,6 +54,12 @@ namespace CursosLivre.Controllers
             contexto.SaveChanges();
         }
 
+        /// <summary>
+        /// Atualiza a Area pelo parametro id
+        /// </summary>
+        /// <param name="id">parametro id da Area</param>
+        /// <param name="area">Area</param>
+        /// <returns></returns>
         [HttpPut("{id}")]
         public IActionResult Atualizar(int id, [FromBody] Areas area)
         {
@@ -63,6 +86,11 @@ namespace CursosLivre.Controllers
                 return BadRequest();
         }
 
+        /// <summary>
+        /// Deleta Area pelo parametro id
+        /// </summary>
+        /// <param name="id">id da Area</param>
+        /// <returns>retorna json com msg</returns>
         [HttpDelete("{id}")]
         public IActionResult Apagar(int id)
         {
