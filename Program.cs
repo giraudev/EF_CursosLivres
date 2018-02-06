@@ -12,6 +12,8 @@ using Microsoft.Extensions.Logging;
 
 namespace CursosLivre
 {
+    //no lugar de join, colocar isto:
+    //var turma = _context.Turmas.Include("Curso").Include("Curso.Area").FirstOrDefault(a => a.IdTurma == id);
     public class Program
     {
         public static void Main(string[] args)

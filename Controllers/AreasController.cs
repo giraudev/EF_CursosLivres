@@ -26,10 +26,21 @@ namespace CursosLivre.Controllers
         /// Retorna lista de Areas
         /// </summary>
         /// <returns>Lista de Areas</returns>
+        /// <response code="200">Retorna uma lista de areas</response>
+        /// <response code="400">Ocorreu um erro</response>
         [HttpGet]
-        public IEnumerable<Areas> Listar()
+        [ProducesResponseType(typeof(List<Areas>), 200)]
+        [ProducesResponseType(typeof(string), 400)]
+        public IActionResult Listar()
         {
-            return contexto.Areas.ToList();
+            try
+            {
+                return Ok(contexto.Areas.ToList());
+            }
+            catch (System.Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
         }
 
         /// <summary>
@@ -37,30 +48,84 @@ namespace CursosLivre.Controllers
         /// </summary>
         /// <param name="id">parametro id</param>
         /// <returns>Area</returns>
+        /// <response code="200">Retorna uma area</response>
+        /// <response code="400">Ocorreu um erro</response>
+        /// <response code="404">Área não encontrada</response>
         [HttpGet("{id}")]
-        public Areas Listar(int id)
+        [ProducesResponseType(typeof(Areas), 200)]
+        [ProducesResponseType(typeof(string), 400)]
+        [ProducesResponseType(typeof(string), 404)]
+        public IActionResult Listar(int id)
         {
-            return contexto.Areas.Where(x => x.IdArea == id).FirstOrDefault();
+            try
+            {
+                Areas area_ = contexto.Areas.FirstOrDefault(x => x.IdArea == id);
+
+                if (area_ == null)
+                {
+                    return NotFound("Área não encontrada");
+                }
+                return Ok(area_);
+            }
+            catch (System.Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+
         }
 
         /// <summary>
         /// Cadastra Area
         /// </summary>
         /// <param name="area">Parametro area</param>
+        /// <remarks>
+        /// Modelo de Dados deve ser enviado para cadastrar a area request:
+        /// 
+        /// POST /Area
+        /// {
+        ///     "nomeArea":"nome da área"
+        /// }
+        /// </remarks>
+        /// <response code="200">Retorna a area cadastrada</response>
+        /// <response code="400">Ocorreu um erro</response>
         [HttpPost]
-        public void Cadastrar([FromBody] Areas area)
+        [ProducesResponseType(typeof(Areas), 200)]
+        [ProducesResponseType(typeof(string), 400)]
+        public IActionResult Cadastrar([FromBody] Areas area)
         {
-            contexto.Areas.Add(area);
-            contexto.SaveChanges();
+            try
+            {
+                contexto.Areas.Add(area);
+                contexto.SaveChanges();
+                return Ok(area);
+            }
+            catch (System.Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
         }
 
         /// <summary>
         /// Atualiza a Area pelo parametro id
         /// </summary>
+        /// <remarks>
+        /// Modelo de área que irá ser atualizada request:
+        ///    PUT /Area
+        ///    {
+        ///       "idArea":0,
+        ///       "nomeArea":"Nome de area atualizado"
+        ///    }   
+        /// </remarks>
         /// <param name="id">parametro id da Area</param>
         /// <param name="area">Area</param>
-        /// <returns></returns>
+        /// <returns>Retorna a area atualizada</returns>
+        /// <response code="200">Retorna area atualizada</response>
+        /// <response code="400">Ocorreu um erro</response>
+        /// <response code="404">Área não encontrada</response>
         [HttpPut("{id}")]
+        [ProducesResponseType(typeof(Areas), 200)]
+        [ProducesResponseType(typeof(string), 400)]
+        [ProducesResponseType(typeof(string), 404)]
         public IActionResult Atualizar(int id, [FromBody] Areas area)
         {
             if (area == null || area.IdArea != id)

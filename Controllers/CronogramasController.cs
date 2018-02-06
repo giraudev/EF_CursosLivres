@@ -22,22 +22,66 @@ namespace CursosLivre.Controllers
         /// Retorna lista de Cronogramas
         /// </summary>
         /// <returns>Cronogramas</returns>
+        /// <response code="200">Retorna uma lista de cronogramas</response>
+        ///<response code="400">Ocorreu um erro</response>
         [HttpGet]
-        public IEnumerable<Cronogramas> Listar()
+        [ProducesResponseType(typeof(List<Cronogramas>), 200)]
+        [ProducesResponseType(typeof(string), 400)]
+        public IActionResult Listar()
         {
-            return contexto.Cronogramas.ToList();
+            try
+            {
+                return Ok(contexto.Cronogramas.ToList());
+            }
+            catch (System.Exception ex)
+            {
+                return BadRequest(ex.Message);
+
+            }
         }
+
+        /* Código antigo para HttpGet:
+        public IEnumerable<Cronogramas> Listar()
+         {
+             return contexto.Cronogramas.ToList();
+         }*/
 
         /// <summary>
         /// Retorna um Cronograma, pelo parametro id
         /// </summary>
         /// <param name="id">id de cronograma</param>
         /// <returns>cronograma</returns>
+        /// <response code="200">Retorna um cronograma</response>
+        /// <response code="400">Ocorreu um erro</response>
+        /// <response code="404">Cronograma não encontrado</response>
         [HttpGet("{id}")]
+        [ProducesResponseType(typeof(Cronogramas), 200)]
+        [ProducesResponseType(typeof(string), 400)]
+        [ProducesResponseType(typeof(string), 400)]
+        public IActionResult Listar(int id)
+        {
+            try
+            {
+                Cronogramas cronogramas_ = contexto.Cronogramas.FirstOrDefault(x => x.IdCronograma == id);
+
+                if (cronogramas_ == null)
+                {
+                    return NotFound("Dia não encontrado");
+                }
+                return Ok(cronogramas_);
+            }
+            catch (System.Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
+
+
+        /* Antigo código para HttpGet com parametro id:
         public Cronogramas Listar(int id)
         {
             return contexto.Cronogramas.Where(x => x.IdCronograma == id).FirstOrDefault();
-        }
+        }*/
 
         /// <summary>
         /// Cadastra um cronograma novo

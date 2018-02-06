@@ -22,10 +22,23 @@ namespace CursosLivre.Controllers
         /// Retorna lista de dias
         /// </summary>
         /// <returns>lista de dias</returns>
+        /// <response code="200">Retorna uma lista de dias</response>
+        ///<response code="400">Ocorreu um erro</response>
         [HttpGet]
-        public IEnumerable<Dias> Listar()
+        [ProducesResponseType(typeof(List<Dias>), 200)]
+        [ProducesResponseType(typeof(string), 400)]
+
+        public IActionResult Listar()
         {
-            return contexto.Dias.ToList();
+            try
+            {
+                return Ok(contexto.Dias.ToList());
+            }
+            catch (System.Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+
         }
 
         /// <summary>
@@ -33,10 +46,30 @@ namespace CursosLivre.Controllers
         /// </summary>
         /// <param name="id">id dias</param>
         /// <returns>dia</returns>
+        /// <response code="200">Retorna um dia</response>
+        /// <response code="400">Ocorreu um erro</response>
+        /// <response code="404">Dia não encontrado</response>
         [HttpGet("{id}")]
-        public Dias Listar(int id)
+        [ProducesResponseType(typeof(Dias), 200)]
+        [ProducesResponseType(typeof(string), 400)]
+        [ProducesResponseType(typeof(string), 400)]
+      
+        public IActionResult Listar(int id)
         {
-            return contexto.Dias.Where(x => x.IdDias == id).FirstOrDefault();
+            try
+            {
+                Dias dia_ = contexto.Dias.FirstOrDefault(x => x.IdDias == id);
+
+                if (dia_ == null)
+                {
+                    return NotFound("Dia não encontrado");
+                }
+                return Ok(dia_);
+            }
+            catch (System.Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
         }
 
         /// <summary>

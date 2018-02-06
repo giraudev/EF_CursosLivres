@@ -14,6 +14,8 @@
             Retorna lista de Areas
             </summary>
             <returns>Lista de Areas</returns>
+            <response code="200">Retorna uma lista de areas</response>
+            <response code="400">Ocorreu um erro</response>
         </member>
         <member name="M:CursosLivre.Controllers.AreasController.Listar(System.Int32)">
             <summary>
@@ -21,20 +23,44 @@
             </summary>
             <param name="id">parametro id</param>
             <returns>Area</returns>
+            <response code="200">Retorna uma area</response>
+            <response code="400">Ocorreu um erro</response>
+            <response code="404">Área não encontrada</response>
         </member>
         <member name="M:CursosLivre.Controllers.AreasController.Cadastrar(CursosLivre.Models.Areas)">
             <summary>
             Cadastra Area
             </summary>
             <param name="area">Parametro area</param>
+            <remarks>
+            Modelo de Dados deve ser enviado para cadastrar a area request:
+            
+            POST /Area
+            {
+                "nomeArea":"nome da área"
+            }
+            </remarks>
+            <response code="200">Retorna a area cadastrada</response>
+            <response code="400">Ocorreu um erro</response>
         </member>
         <member name="M:CursosLivre.Controllers.AreasController.Atualizar(System.Int32,CursosLivre.Models.Areas)">
             <summary>
             Atualiza a Area pelo parametro id
             </summary>
+            <remarks>
+            Modelo de área que irá ser atualizada request:
+               PUT /Area
+               {
+                  "idArea":0,
+                  "nomeArea":"Nome de area atualizado"
+               }   
+            </remarks>
             <param name="id">parametro id da Area</param>
             <param name="area">Area</param>
-            <returns></returns>
+            <returns>Retorna a area atualizada</returns>
+            <response code="200">Retorna area atualizada</response>
+            <response code="400">Ocorreu um erro</response>
+            <response code="404">Área não encontrada</response>
         </member>
         <member name="M:CursosLivre.Controllers.AreasController.Apagar(System.Int32)">
             <summary>
@@ -44,10 +70,12 @@
             <returns>retorna json com msg</returns>
         </member>
         <member name="M:CursosLivre.Controllers.CronogramasController.Listar">
-            <summary>
-            Retorna lista de Cronogramas
-            </summary>
-            <returns>Cronogramas</returns>
+             <summary>
+             Retorna lista de Cronogramas
+             </summary>
+             <returns>Cronogramas</returns>
+             <response code="200">Retorna uma lista de cronogramas</response>
+            <response code="400">Ocorreu um erro</response>
         </member>
         <member name="M:CursosLivre.Controllers.CronogramasController.Listar(System.Int32)">
             <summary>
@@ -55,6 +83,9 @@
             </summary>
             <param name="id">id de cronograma</param>
             <returns>cronograma</returns>
+            <response code="200">Retorna um cronograma</response>
+            <response code="400">Ocorreu um erro</response>
+            <response code="404">Cronograma não encontrado</response>
         </member>
         <member name="M:CursosLivre.Controllers.CronogramasController.Cadastrar(CursosLivre.Models.Cronogramas)">
             <summary>
@@ -78,10 +109,12 @@
             <returns>msg json</returns>
         </member>
         <member name="M:CursosLivre.Controllers.CursosController.Listar">
-            <summary>
-            Retorna lista de cursos
-            </summary>
-            <returns>lista de cursos</returns>
+             <summary>
+             Retorna lista de cursos
+             </summary>
+             <returns>lista de cursos</returns>
+             <response code="200">Retorna uma lista de cursos</response>
+            <response code="400">Ocorreu um erro</response>
         </member>
         <member name="M:CursosLivre.Controllers.CursosController.Listar(System.Int32)">
             <summary>
@@ -89,6 +122,9 @@
             </summary>
             <param name="id">id curso</param>
             <returns>curso</returns>
+            <response code="200">Retorna um curso</response>
+            <response code="400">Ocorreu um erro</response>
+            <response code="404">Curso não encontrado</response>
         </member>
         <member name="M:CursosLivre.Controllers.CursosController.Cadastrar(CursosLivre.Models.Cursos)">
             <summary>
@@ -112,10 +148,12 @@
             <returns>msg json</returns>
         </member>
         <member name="M:CursosLivre.Controllers.DiasController.Listar">
-            <summary>
-            Retorna lista de dias
-            </summary>
-            <returns>lista de dias</returns>
+             <summary>
+             Retorna lista de dias
+             </summary>
+             <returns>lista de dias</returns>
+             <response code="200">Retorna uma lista de dias</response>
+            <response code="400">Ocorreu um erro</response>
         </member>
         <member name="M:CursosLivre.Controllers.DiasController.Listar(System.Int32)">
             <summary>
@@ -123,6 +161,9 @@
             </summary>
             <param name="id">id dias</param>
             <returns>dia</returns>
+            <response code="200">Retorna um dia</response>
+            <response code="400">Ocorreu um erro</response>
+            <response code="404">Dia não encontrado</response>
         </member>
         <member name="M:CursosLivre.Controllers.DiasController.Cadastrar(CursosLivre.Models.Dias)">
             <summary>
