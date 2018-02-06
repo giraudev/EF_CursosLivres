@@ -62,5 +62,22 @@ namespace CursosLivre.Controllers
                 return BadRequest();
         }
 
+         public IActionResult Apagar(int id)
+        {
+            var dia = contexto.Dias.Where(x => x.IdDias == id).FirstOrDefault();
+            if (dia == null)
+            {
+                return NotFound();
+            }
+
+            contexto.Dias.Remove(dia);
+            int rs = contexto.SaveChanges();
+
+            if (rs > 0)
+                return Ok();
+            else
+                return BadRequest();
+        }
+
     }
 }

@@ -7,7 +7,8 @@ using Microsoft.AspNetCore.Mvc;
 namespace CursosLivre.Controllers
 {
     [Route("api/[controller]")]
-    public class AreasController : Controller
+
+        public class AreasController : Controller
     {
         Areas areas = new Areas();
         readonly CursosLivreContexto contexto;

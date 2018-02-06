@@ -66,6 +66,23 @@ namespace CursosLivre.Controllers
                 return BadRequest();
         }
 
+        public IActionResult Apagar(int id)
+        {
+            var cronograma = contexto.Cronogramas.Where(x => x.IdCronograma == id).FirstOrDefault();
+            if (cronograma == null)
+            {
+                return NotFound();
+            }
+
+            contexto.Cronogramas.Remove(cronograma);
+            int rs = contexto.SaveChanges();
+
+            if (rs > 0)
+                return Ok();
+            else
+                return BadRequest();
+        }
+
 
 
     }

@@ -64,6 +64,23 @@ namespace CursosLivre.Controllers
                 return BadRequest();
         }
 
+         public IActionResult Apagar(int id)
+        {
+            var curso = contexto.Cursos.Where(x => x.IdCursos == id).FirstOrDefault();
+            if (curso == null)
+            {
+                return NotFound();
+            }
+
+            contexto.Cursos.Remove(curso);
+            int rs = contexto.SaveChanges();
+
+            if (rs > 0)
+                return Ok();
+            else
+                return BadRequest();
+        }
+
 
     }
 }

@@ -6,6 +6,7 @@ namespace CursosLivre.Models
 {
     public class Areas
     {
+        
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int IdArea { get; set; }
