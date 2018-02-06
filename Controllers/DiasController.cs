@@ -7,7 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 namespace CursosLivre.Controllers
 {
     [Route("api/[controller]")]
-    public class DiasController:Controller
+    public class DiasController : Controller
     {
         Dias dias = new Dias();
 
@@ -61,8 +61,8 @@ namespace CursosLivre.Controllers
             else
                 return BadRequest();
         }
-
-         public IActionResult Apagar(int id)
+        [HttpDelete("{id}")]
+        public IActionResult Apagar(int id)
         {
             var dia = contexto.Dias.Where(x => x.IdDias == id).FirstOrDefault();
             if (dia == null)

@@ -37,7 +37,7 @@ namespace CursosLivre.Controllers
             contexto.SaveChanges();
         }
 
-         [HttpPut("{id}")]
+        [HttpPut("{id}")]
         public IActionResult Atualizar(int id, [FromBody] Cronogramas cronograma)
         {
             if (cronograma == null || cronograma.IdCronograma != id)
@@ -56,7 +56,7 @@ namespace CursosLivre.Controllers
             cron.HoraFim = cronograma.HoraFim;
             cron.DiaInicio = cronograma.DiaInicio;
             cron.DiaFim = cronograma.DiaFim;
-            
+
             contexto.Cronogramas.Update(cron);
             int rs = contexto.SaveChanges();
 
@@ -65,7 +65,7 @@ namespace CursosLivre.Controllers
             else
                 return BadRequest();
         }
-
+        [HttpDelete("{id}")]
         public IActionResult Apagar(int id)
         {
             var cronograma = contexto.Cronogramas.Where(x => x.IdCronograma == id).FirstOrDefault();

@@ -54,7 +54,7 @@ namespace CursosLivre.Controllers
 
             cursinho.IdAreas = curso.IdAreas;
             cursinho.NomeCurso = curso.NomeCurso;
-                    
+
             contexto.Cursos.Update(cursinho);
             int rs = contexto.SaveChanges();
 
@@ -64,7 +64,8 @@ namespace CursosLivre.Controllers
                 return BadRequest();
         }
 
-         public IActionResult Apagar(int id)
+        [HttpDelete("{id}")]
+        public IActionResult Apagar(int id)
         {
             var curso = contexto.Cursos.Where(x => x.IdCursos == id).FirstOrDefault();
             if (curso == null)
