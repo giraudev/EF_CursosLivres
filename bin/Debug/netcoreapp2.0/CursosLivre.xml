@@ -167,9 +167,19 @@
         </member>
         <member name="M:CursosLivre.Controllers.DiasController.Cadastrar(CursosLivre.Models.Dias)">
             <summary>
-            Cadastra novo dia
+            Cadastra Dias
             </summary>
-            <param name="dia">dia</param>
+            <param name="dia">Parametro dia</param>
+            <remarks>
+            Modelo de Dados deve ser enviado para cadastrar dia request:
+            
+            POST /Dias
+            {
+                "dia":"nome do dia"
+            }
+            </remarks>
+            <response code="200">Retorna dia cadastrado</response>
+            <response code="400">Ocorreu um erro</response>
         </member>
         <member name="M:CursosLivre.Controllers.DiasController.Atualizar(System.Int32,CursosLivre.Models.Dias)">
             <summary>

@@ -73,23 +73,58 @@ namespace CursosLivre.Controllers
         }
 
         /// <summary>
-        /// Cadastra novo dia
+        /// Cadastra Dias
         /// </summary>
-        /// <param name="dia">dia</param>
+        /// <param name="dia">Parametro dia</param>
+        /// <remarks>
+        /// Modelo de Dados deve ser enviado para cadastrar dia request:
+        /// 
+        /// POST /Dias
+        /// {
+        ///     "dia":"nome do dia"
+        /// }
+        /// </remarks>
+        /// <response code="200">Retorna dia cadastrado</response>
+        /// <response code="400">Ocorreu um erro</response>
         [HttpPost]
-        public void Cadastrar([FromBody] Dias dia)
+        [ProducesResponseType(typeof(Dias), 200)]
+        [ProducesResponseType(typeof(string), 400)]
+
+        public IActionResult Cadastrar([FromBody] Dias dia)
         {
-            contexto.Dias.Add(dia);
-            contexto.SaveChanges();
+             try
+            {
+                contexto.Dias.Add(dia);
+                contexto.SaveChanges();
+                return Ok(dia);
+            }
+            catch (System.Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
         }
 
         /// <summary>
-        /// Atualiza dia, atraves de seu id
+        /// Atualiza o dia pelo parametro id
         /// </summary>
-        /// <param name="id">id dia</param>
-        /// <param name="dia">dia</param>
-        /// <returns></returns>
+        /// <remarks>
+        /// Modelo de dia que irá ser atualizada request:
+        ///    PUT /Dias
+        ///    {
+        ///       "idDias":0,
+        ///       "Dia":"Nome do dia atualizado"
+        ///    }   
+        /// </remarks>
+        /// <param name="id">parametro id do dia</param>
+        /// <param name="dia">Dia</param>
+        /// <returns>Retorna o dia atualizada</returns>
+        /// <response code="200">Retorna dia atualizado</response>
+        /// <response code="400">Ocorreu um erro</response>
+        /// <response code="404">Dia não encontrado</response>
         [HttpPut("{id}")]
+        [ProducesResponseType(typeof(Dias), 200)]
+        [ProducesResponseType(typeof(string), 400)]
+        [ProducesResponseType(typeof(string), 404)]
         public IActionResult Atualizar(int id, [FromBody] Dias dia)
         {
             if (dia == null || dia.IdDias != id)
